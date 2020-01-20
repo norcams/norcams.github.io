@@ -2,13 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>UH IaaS</title>
-    <link>http://www.uh-iaas.no/</link>
+    <link>https://www.uh-iaas.no/index.xml</link>
     <description>Recent content on UH IaaS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-GB</language>
-    
-	<atom:link href="http://www.uh-iaas.no/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="https://www.uh-iaas.no/index.xml" rel="self" type="application/rss+xml" />
     
   </channel>
 </rss>
