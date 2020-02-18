@@ -1,239 +1,344 @@
 <!DOCTYPE html>
-<html lang="en-GB">
-    <head>
-        <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="author" content="UH IaaS">
-<meta name="description" content="The Norwegian Academic Community Cloud">
-<meta name="generator" content="Hugo 0.18.1" />
-<title>UH IaaS</title>
-<!-- Favicon -->
-<link rel="shortcut icon" href="https://www.uh-iaas.no/favicon.ico">
-<!-- Bootstrap Core CSS -->
-<link rel="stylesheet" href="https://www.uh-iaas.no/css/bootstrap.min.css" type="text/css">
-<!-- Custom Fonts -->
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="https://www.uh-iaas.no/font-awesome/css/font-awesome.min.css" type="text/css">
-<!-- Plugin CSS -->
-<link rel="stylesheet" href="https://www.uh-iaas.no/css/animate.min.css" type="text/css">
-<!-- Custom CSS -->
-<link rel="stylesheet" href="https://www.uh-iaas.no/css/creative.css" type="text/css">
-<link rel="stylesheet" href="https://www.uh-iaas.no/css/modals.css" type="text/css">
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+<html lang="en" class="full-height">
 
-    </head>
-    <body id="page-top">
+<head>
+  <title>NREC</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <meta name="description" content="A Norwegian Cloud Infrastructure for Research and Education" />
+  <meta name="keywords"
+    content="Cloud, Infrastructure, Education, Research, UiO, UiB, University, Oslo, Bergen, Norway" />
 
-        <!-- NAVIGATION -->
-<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand page-scroll" href="#page-top">UH IaaS</a>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a class="page-scroll" href="#about">About</a>
-                </li>
-                <li>
-                    <a href="http://docs.uh-iaas.no/">Documentation</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#services">Services</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#portfolio"></a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#status">Status</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#contact">Contact</a>
-                </li>
-                <li>
-                    <a href="https://dashboard.uh-iaas.no/">Sign in</a>
-                </li>
-                <li>
-                    <a href="https://access.uh-iaas.no/">Sign up</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-fluid -->
-</nav>
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@nrec_no" />
+  <meta name="twitter:image:alt" content="NREC logo" />
+  <meta property="og:title" content="NREC" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nrec.no" />
+  <meta property="og:description" content="A Norwegian Cloud Infrastructure for Research and Education" />
+  <meta property="og:image" content="https://nrec.no" />
+  <meta property="og:site_name" content="nrec.no" />
 
+  <link href="assets/img/favicon.ico" rel="icon" type="image/png">
 
-        <!-- HEADER -->
-<header>
-    <div class="header-content">
-        <div class="header-content-inner">
-            <h1>A Norwegian Cloud Infrastructure for Research and Education</h1>
-            <hr>
-            <p>Fast, standardized servers and storage for the Norwegian higher education sector. Get access to a self-service, modern and secure IT infrastructure, available when you need it.</p>
-            <a href="#about" class="btn btn-primary btn-xl page-scroll">Find out more</a>
-        </div>
-    </div>
-</header>
+  <link rel="stylesheet" href="./assets/vendor/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="./assets/css/lazy.css">
+  <link rel="stylesheet" href="./assets/css/demo.css">
+  <link rel="stylesheet" href="./assets/css/custom.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css"
+    integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+</head>
 
-        <!-- ABOUT -->
-<section class="bg-primary" id="about">
+<body class="index">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-primary">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 text-center">
-                <h2 class="section-heading">The Future of IT is in the Clouds</h2>
-                <hr class="light">
-                <p class="text-faded">In the past, getting access to IT resources has been a long-winded process. The UH IaaS service delivers standardized servers and storage quickly with less effort. Our self-service platform is built on <a href="//www.openstack.org">OpenStack</a>, an industry standard for cloud computing.</p>
-                <a href="https://access.uh-iaas.no/" class="btn btn-default btn-xl">Start using the service</a>
-		&nbsp;&nbsp;
-                <a href="https://dashboard.uh-iaas.no/" class="btn btn-default btn-xl">Login for existing users</a>
+      <a class="navbar-brand" href="#">
+        <img src="./assets/img/logo_l.svg" alt="logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7"
+        aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse text-center" id="navbarSupportedContent-7">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown mx-2">
+            <a class="nav-link" href="#services" id="nav-inner-primary_dropdown_1" role="button"
+              aria-expanded="false">Services</a>
+          </li>
+          <li class="nav-item dropdown mx-2">
+            <a class="nav-link" href="#info" id="nav-inner-primary_dropdown_1" role="button"
+              aria-expanded="false">Introduction</a>
+          </li>
+          <li class="nav-item dropdown mx-2">
+            <a class="nav-link" href="http://docs.nrec.no/" id="nav-inner-primary_dropdown_1" role="button"
+              aria-expanded="false">Doumentation</a>
+          </li>
+          <li class="nav-item dropdown mx-2">
+            <a class="nav-link" href="#contact" id="nav-inner-primary_dropdown_1" role="button"
+              aria-expanded="false">Contact</a>
+          </li>
+          <li class="nav-item dropdown mx-2">
+            <a class="nav-link" href="#about" id="nav-inner-primary_dropdown_1" role="button"
+              aria-expanded="false">About</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-2">
+            <a class="btn btn-outline-light" href="https://access.nrec.no/">
+              Sign up
+            </a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="btn btn-outline-light" href="https://dashboard.nrec.no">
+              Sign in
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <a id="banner"></a>
+  <div class="page-view bg-primary">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="title">
+            <h2 class="my-3 text-white">Norwegian Research and Education Cloud</h2>
+            <p class="my-3 subtitle_text1">Fast, standardized servers and storage for the Norwegian higher education sector.
+              <br />
+              <p class="my-3 text-white subtitle_text2">Get access to a self-service, modern and secure cloud infrastructure,
+                available when you need it.</p>
+          </div>
+        </div>
+        <!-- graphic -->
+        <div class="col-md-6">
+          <a href="#">
+            <img class="img-fluid rounded mb-3 mb-md-0 d-none d-sm-block" src="./assets/img/bg.jpg" alt="photo">
+          </a>
+        </div>
+        <div class="logoContainer col-md-5 offset-md-0">
+          <div class="d-flex col-md-6 col-xs-6"></div>
+            <div class="logos">
+              <img src="./assets/img/nrec_partners.png" alt="nrec_partners">
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</section>
+  </div>
 
-        <!-- SERVICES -->
-<section id="services">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="section-heading">Self-Service Infrastructure</h2>
-                <hr class="primary">
+  <a id="services"></a>
+  <div class="container">
+    <div class="section">
+      <div class="row">
+        <div class="col-10 col-md-10 offset-md-1 offset-md-1">
+          <div class="header text-center">
+            <div class="text-left">
+              <h2>Self-Service Infrastructure</h2><br />
             </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="service-box">
-                    <i class="fa fa-4x fa-server wow bounceIn text-primary"></i>
-                    <h3>Compute</h3>
-                    <p class="text-muted">We offer a great variety capacities and operating systems, and customized solutions if you have special requirements.</p>
+            <p class="d-md-none text-left">
+              NREC's data centres are located in Bergen and Oslo for high availability and redundancy.
+              It provides IT infrastructure components – including Compute, Storage and Networking.
+            </p>
+            <div class="card-columns d-none d-sm-block">
+              <!-- Services -->
+              <div class="card mb-3 card_style">
+                <div class="card-body text-center">
+                  <a class="server btn btn-lg mb-3 icon_large" href="#" target="_blank">
+                    <i class="fas fa-3x fa-server px-3"></i>
+                    <span class="sr-only">Compute</span>
+                  </a>
+                  <h5 class="card-title">Compute</h5>
+                  <p class="card-text small">
+                    A great variety capacities and operating systems, and customized solutions if you have special
+                    requirements</p>
                 </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="service-box">
-                    <i class="fa fa-4x fa-hdd-o wow bounceIn text-primary"></i>
-                    <h3>Block Storage</h3>
-                    <p class="text-muted">Our fully self-service block storage allows you to create and expand volumes on the fly.</p>
+              </div>
+              <div class="card mb-3 card_style">
+                <div class="card-body text-center">
+                  <a class="objectstorage btn btn-lg mb-3 icon_large" href="#" target="_blank">
+                    <i class="fas fa-3x fa-database px-3"></i>
+                    <span class="sr-only">Object Storage</span>
+                  </a>
+                  <h5 class="card-title">Object Storage</h5>
+                  <p class="card-text small">
+                    Robust and highly scalable object storage based on Ceph. Collect, store and analyze data on a larger
+                    scale</p>
                 </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="service-box">
-                    <i class="fa fa-4x fa-database wow bounceIn text-primary"></i>
-                    <h3>Object Storage</h3>
-                    <p class="text-muted">If you need to collect, store and analyze data on a larger scale, we offer robust and highly scalable object storage based on Ceph <strong>Coming soon.</strong></p>
+              </div>
+              <div class="card mb-3 card_style">
+                <div class="card-body text-center">
+                  <a class="blockstorage btn btn-lg mb-3 icon_large" href="#" target="_blank">
+                    <i class="fas fa-3x fa-hdd px-3"></i>
+                    <span class="sr-only">Block Storage</span>
+                  </a>
+                  <h5 class="card-title">Block Storage</h5>
+                  <p class="card-text small">
+                    Fully self-service block storage allows you to create and expand volumes on the fly
+                  </p>
                 </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="service-box">
-                    <i class="fa fa-4x fa-globe wow bounceIn text-primary"></i>
-                    <h3>Geo Redundancy</h3>
-                    <p class="text-muted">We have data centres located in Bergen and Oslo for high availability and redundancy.</p>
+              </div>
+              <div class="card mb-3 card_style">
+                <div class="card-body text-center">
+                  <a class="dns btn btn-lg mb-3 icon_large" href="#" target="_blank">
+                    <i class="fas fa-3x fa-globe px-3"></i>
+                    <span class="sr-only">DNS</span>
+                  </a>
+                  <h5 class="card-title">DNS</h5>
+                  <p class="card-text small">
+                    Easy, self-service DNS management
+                  </p>
                 </div>
+              </div>
+              <div class="card mb-3 card_style">
+                <div class="card-body text-center">
+                  <a class="geo btn btn-lg mb-3 icon_large" href="#" target="_blank">
+                    <i class="fas fa-3x fa-globe-europe px-3"></i>
+                    <span class="sr-only">Multiple Regions</span>
+                  </a>
+                  <h5 class="card-title">Multiple Regions</h5>
+                  <p class="card-text small">
+                    Data centres located in Bergen and Oslo for high availability and redundancy
+                  </p>
+                </div>
+              </div>
+              <div class="card mb-3 card_style">
+                <div class="card-body text-center">
+                  <a class="hpc btn btn-lg mb-3 icon_large" href="#" target="_blank">
+                    <i class="fas fa-3x fa-cloud px-3"></i>
+                    <span class="sr-only">HPC</span>
+                  </a>
+                  <h5 class="card-title">HPC</h5>
+                  <p class="card-text small">
+                    High Performance Computing on dedicated hardware for demanding workloads
+                  </p>
+                </div>
+              </div>
             </div>
-
+          </div>
         </div>
+      </div>
     </div>
-</section>
+  </div>
 
-        <section class="no-padding" id="portfolio">
-    <div class="container-fluid">
-        <div class="row no-gutter">
-
+  <a id='info'></a>
+  <div class="container">
+    <div class="section">
+      <p class="d-none d-sm-block">
+        <br /><br />
+      </p>
+      <div class="row">
+        <div class="col-10 col-md-10 offset-md-1 offset-md-1">
+          <p class="d-none d-sm-block">
+            <hr /><br />
+          </p>
+          <div class="header">
+            <h3>What is NREC?</h3>
+            <p>
+              NREC is an Infrastructure-as-a-Service (IaaS), commonly referred to as a cloud infrastructure.</p>
+            <p>
+              An IaaS is a self-service infrastructure where you spawn standarized servers and storage instantly, as needed,
+              from a given resource quota. You can use this for setting up an internet service, store and process data and
+              perform calculations.</p>
+            <p>
+            <p>
+              The NREC platform is built on OpenStack, an industry standard for cloud computing. Manage your resources easily
+              from a web-based dashboard, a command-line interface or a REST-based API.</p>
+              <p>For more information, please read our <a href="https://docs.nrec.no">documentation</a>.</p>
+              <br /><br />
+            <h3>Who can use NREC?</h3>
+            <p>
+            All users at <a href="http://docs.nrec.no/en/latest/intro.html#who-can-use-the-nrec-cloud">educational
+            institutions that are allegeable for access</a> can use the NREC cloud. All you need to sign up is a FEIDE account.
+            </p>
+            <p class="d-none d-sm-block">
+              <br /><br />
+              <hr /><br />
+            </p>
+            <br />
+          </div>
         </div>
+      </div>
     </div>
-</section>
+  </div>
 
-        <!-- ASIDE -->
-<aside class="bg-dark">
-    <div class="container text-center">
-        <div class="call-to-action">
-            <h2>Where do I get more details?</h2>
-            <a href="//docs.uh-iaas.no/" class="btn btn-default btn-xl wow tada">Read more</a>
-        </div>
-    </div>
-</aside>
-
-        <!-- STATUS -->
-<section id="status">
+  <a id="contact"></a>
+  <div class="examples section bg-light">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 text-center">
-                <h2 class="section-heading">News and Status Messages</h2>
-                <hr class="primary">
-                <p>We have a status dashboard with stats, news and status messages. If there are any interruptions in service, we will post it here. We also publish news and important notification on Twitter.</p>
-            </div>
-            <div class="col-lg-4 col-lg-offset-2 text-center">
-                <i class="fa fa-tachometer fa-3x wow bounceIn"></i>
-                <a href="https://status.uh-iaas.no">
-                <p>Status dashboard</p></a>
-            </div>
-            <div class="col-lg-4 text-center">
-                <i class="fa fa-twitter fa-3x wow bounceIn"></i>
-                <a href="https://www.twitter.com/nrec_no">
-                <p>Follow us on Twitter!</p></a>
-            </div>
+      <div class="row">
+        <div class="col-10 col-md-10 offset-md-1 offset-md-1">
+          <h2 class="text-left">News and Status updates</h2>
+          <p class="text-left">
+            We have a status dashboard with stats, news and status messages and we also publish news and important notification
+            on Twitter. If there are any interruptions in service, we will let you know!
+          </p>
+          <br />
+          <a class="twitter btn icon_some_large" href="https://twitter.com/uhiaas" target="_blank">
+            <i class="fab fa-3x fa-twitter pr-3"></i>
+            <span class="sr-only">Visit our Twitter</span>
+          </a>
+          <a class="status btn icon_some_large" href="https://status.nrec.no" target="_blank">
+            <i class="fas fa-3x fa-info-circle pr-3"></i>
+            <span class="sr-only">Visit our Status</span>
+          </a>
+          <h2 class="text-left">Getting help</h2>
+          <p class="text-left">
+            Are you having trouble using the service? Do you need more resources for your project? Or do you simply want to
+            know more? Don’t hesitate to get in touch with us. We speak both Norwegian and English.
+          </p>
+          <br />
+          <a class="slack btn icon_some_large" href="https://uhcp.slack.com" target="_blank">
+            <i class="fab fa-3x fa-slack-hash pr-3"></i>
+            <span class="sr-only">Chat with us</span>
+          </a>
+          <a class="email btn icon_some_large" href="mailto:support@nrec.no" target="_blank">
+            <i class="fas fa-3x fa-envelope pr-3"></i>
+            <span class="sr-only">Email Us</span>
+          </a>
+          <p class="d-none d-sm-block">
+            <br /><br />
+          </p>
         </div>
+      </div>
     </div>
-</section>
+  </div>
 
-        <!-- CONTACT -->
-<section id="contact">
+  <a id='about'></a>
+  <div class="container">
+    <div class="section">
+      <div class="row">
+        <div class="col-10 col-md-10 offset-md-1">
+          <h2>About Us</h2>
+          <p class="text-left">
+            NREC is a collaboration project between the University of Bergen and the University of Oslo, with additional sponsorships
+            from NeIC (Nordic e-Infrastructure Collaboration) and Uninett. We've been in production since 2016 and are currently
+            providing cloud infrastructure for several high profile academic projects, including CERN's ALICE and ATLAS experiments.
+            Our hardware is located exclusively on-premise, our services are developed locally and we are almost entirely based on
+            Open Source Software and open standards, making us a more transparent alternative to commercial cloud providers.
+            <br /><br />
+            We are a community cloud aiming to provide a modern, flexible and secure IT infrastucture, tailored to the needs of the
+            research and higher education sector.
+          </p>
+          <p><br /><br /></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <footer class="footer-1 footer_custom">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 text-center">
-                <h2 class="section-heading">Getting Help</h2>
-                <hr class="primary">
-                <p>Are you having trouble using the service? Do you need more resources for your project? Don&rsquo;t hesitate to get in touch with us. We have an <a href="https://uhps.slack.com/messages/iaas/">informal Slack channel</a> for discussions and quick enquiries, as well as more formal means of communication.</p>
-            </div>
-            <div class="col-lg-3 col-lg-offset-0 text-center">
-                <i class="fa fa-slack fa-3x wow bounceIn"></i>
-                <a href="https://uhps.slack.com/messages/iaas/">
-                <p>Join our chat!</p></a>
-            </div>
-            <div class="col-lg-3 text-center">
-                <i class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></i>
-                <a href="mailto:support@uh-iaas.no">
-                <p>support@uh-iaas.no</p></a>
-            </div>
+      <div class="small d-flex flex-column flex-md-row justify-content-between align-items-center">
+        <div class="social mt-4 mt-md-0">
+          <a class="email btn btn-lg icon_some_small" href="mailto:support@nrec.no" target="_blank">
+            <i class="fas fa-envelope"></i>
+            <span class="sr-only">Email Us</span>
+          </a>
+          <a class="twitter btn btn-lg icon_some_small" href="https://twitter.com/nrec" target="_blank">
+            <i class="fab fa-twitter"></i>
+            <span class="sr-only">Visit our Twitter</span>
+          </a>
+          <a class="slack btn btn-lg icon_some_small" href="https://uhcp.slack.com" target="_blank">
+            <i class="fab fa-slack-hash"></i>
+            <span class="sr-only">Chat with us</span>
+          </a>
         </div>
+        <div class="link text-white">
+          <ul class="footer-menu list-unstyled d-flex flex-row text-center text-md-left">
+            <li><a href="http://docs.nrec.no/en/latest/terms-of-service.html">Term of Use</a></li>
+            <li><a href="http://docs.nrec.no/en/latest/terms-of-service.html#privacy-policy">Privacy
+                Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright text-center">
+        <hr />
+        <p class="small">&copy; Copyright 2020, NREC</p>
+      </div>
     </div>
-</section>
+  </footer>
 
+</body>
 
-        <!-- Portfolio Modals -->
-
-
-        <!-- jQuery -->
-<script src="https://www.uh-iaas.no/js/jquery.js"></script>
-<!-- Bootstrap Core JavaScript -->
-<script src="https://www.uh-iaas.no/js/bootstrap.min.js"></script>
-<!-- Plugin JavaScript -->
-<script src="https://www.uh-iaas.no/js/jquery.easing.min.js"></script>
-<script src="https://www.uh-iaas.no/js/jquery.fittext.js"></script>
-<script src="https://www.uh-iaas.no/js/wow.min.js"></script>
-<!-- Custom Theme JavaScript -->
-<script src="https://www.uh-iaas.no/js/creative.js"></script>
-
-    </body>
 </html>
