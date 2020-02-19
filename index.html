@@ -68,7 +68,7 @@
               Sign up
             </a>
           </li>
-          <li class="nav-item mx-2">
+          <li class="nav-item mx-2 m-md-0">
             <a class="btn btn-outline-light" href="https://dashboard.nrec.no">
               Sign in
             </a>
@@ -125,7 +125,7 @@
               <!-- Services -->
               <div class="card mb-3 card_style">
                 <div class="card-body text-center">
-                  <a class="server btn btn-lg mb-3 icon_large" href="#" target="_blank">
+                  <p class="server btn btn-lg mb-3 icon_large">
                     <i class="fas fa-3x fa-server px-3"></i>
                     <span class="sr-only">Compute</span>
                   </a>
@@ -137,7 +137,7 @@
               </div>
               <div class="card mb-3 card_style">
                 <div class="card-body text-center">
-                  <a class="objectstorage btn btn-lg mb-3 icon_large" href="#" target="_blank">
+                  <p class="objectstorage btn btn-lg mb-3 icon_large"/>
                     <i class="fas fa-3x fa-database px-3"></i>
                     <span class="sr-only">Object Storage</span>
                   </a>
@@ -149,7 +149,7 @@
               </div>
               <div class="card mb-3 card_style">
                 <div class="card-body text-center">
-                  <a class="blockstorage btn btn-lg mb-3 icon_large" href="#" target="_blank">
+                  <p class="blockstorage btn btn-lg mb-3 icon_large">
                     <i class="fas fa-3x fa-hdd px-3"></i>
                     <span class="sr-only">Block Storage</span>
                   </a>
@@ -161,7 +161,7 @@
               </div>
               <div class="card mb-3 card_style">
                 <div class="card-body text-center">
-                  <a class="dns btn btn-lg mb-3 icon_large" href="#" target="_blank">
+                  <p class="dns btn btn-lg mb-3 icon_large">
                     <i class="fas fa-3x fa-globe px-3"></i>
                     <span class="sr-only">DNS</span>
                   </a>
@@ -173,7 +173,7 @@
               </div>
               <div class="card mb-3 card_style">
                 <div class="card-body text-center">
-                  <a class="geo btn btn-lg mb-3 icon_large" href="#" target="_blank">
+                  <p class="geo btn btn-lg mb-3 icon_large">
                     <i class="fas fa-3x fa-globe-europe px-3"></i>
                     <span class="sr-only">Multiple Regions</span>
                   </a>
@@ -185,7 +185,7 @@
               </div>
               <div class="card mb-3 card_style">
                 <div class="card-body text-center">
-                  <a class="hpc btn btn-lg mb-3 icon_large" href="#" target="_blank">
+                  <p class="hpc btn btn-lg mb-3 icon_large">
                     <i class="fas fa-3x fa-cloud px-3"></i>
                     <span class="sr-only">HPC</span>
                   </a>
@@ -338,6 +338,10 @@
       </div>
     </div>
   </footer>
+  <!-- first jquery, then propper, then bootstrap -->
+  <script src="./assets/vendor/jquery/jquery.min.js"></script>
+  <script src="./assets/vendor/popper/popper.min.js"></script>
+  <script src="./assets/vendor/bootstrap/bootstrap.min.js"></script>
 
 </body>
 
