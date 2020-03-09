@@ -121,13 +121,6 @@ h4 {
     margin-bottom: 0.4em;
 }
 
-ul {
-    color: #ffffff;
-}
-
-li {
-    color: #ffffff;
-}
 
 /* Offset anchors for links to  to adjust for fixed nav bar */
 :target {
