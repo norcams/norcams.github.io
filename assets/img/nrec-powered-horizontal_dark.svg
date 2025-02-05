@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="39.791mm"
-   height="43.918999mm"
-   viewBox="0 0 39.791001 43.918999"
+   width="28.178288cm"
+   height="32.106041cm"
+   viewBox="0 0 281.78288 321.06041"
    version="1.1"
    id="svg1"
    inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
@@ -23,9 +23,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="1.6266975"
-     inkscape:cx="-89.752397"
-     inkscape:cy="42.109858"
+     inkscape:zoom="0.40667438"
+     inkscape:cx="287.69946"
+     inkscape:cy="490.56447"
      inkscape:window-width="1920"
      inkscape:window-height="1156"
      inkscape:window-x="0"
@@ -38,10 +38,10 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-46.670222,-26.325143)">
+     transform="translate(-53.338896,-33.394012)">
     <g
        id="g3-5"
-       transform="matrix(0.19775891,0,0,0.19775891,48.159891,27.462906)">
+       transform="matrix(1.5146398,0,0,1.5146398,53.536608,33.387953)">
       <g
          id="XMLID_1_-3">
         <g
@@ -65,7 +65,7 @@
     </g>
     <g
        id="g6-2"
-       transform="matrix(0.26458333,0,0,0.26458333,41.832231,19.273766)"
+       transform="matrix(2.0264496,0,0,2.0264496,5.0729196,-29.332852)"
        style="fill:#00c1c1;fill-opacity:1">
       <path
          fill="#246b91"
@@ -90,14 +90,14 @@
     </g>
     <text
        xml:space="preserve"
-       style="font-size:6.30498px;font-family:Vazirmatn;-inkscape-font-specification:Vazirmatn;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#00c1c1;fill-opacity:1;stroke-width:8.27529;stroke-linejoin:round"
-       x="66.216057"
-       y="56.944687"
+       style="font-size:48.2901px;font-family:Vazirmatn;-inkscape-font-specification:Vazirmatn;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#00c1c1;fill-opacity:1;stroke-width:63.3807;stroke-linejoin:round"
+       x="191.82919"
+       y="259.18958"
        id="text6-4"><tspan
          sodipodi:role="line"
          id="tspan6-1"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.30498px;font-family:'Droid Sans';-inkscape-font-specification:'Droid Sans';fill:#00c1c1;fill-opacity:1;stroke-width:8.27529"
-         x="66.216057"
-         y="56.944687">POWERED BY</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:48.2901px;font-family:'Droid Sans';-inkscape-font-specification:'Droid Sans';fill:#00c1c1;fill-opacity:1;stroke-width:63.3807"
+         x="191.82919"
+         y="259.18958">POWERED BY</tspan></text>
   </g>
 </svg>
