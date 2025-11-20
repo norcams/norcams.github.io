@@ -13,7 +13,7 @@
 /* Make banner background extend to top to eliminate white gap */
 .bg-primary.page-view {
     margin-top: 0 !important;
-    padding-top: 152px !important; /* 72px navbar + 80px content */
+    padding-top: 55px !important; /* 72px navbar + 80px content */
     position: relative;
 }
 
