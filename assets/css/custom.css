@@ -1,13 +1,81 @@
 .page-view {
-    padding: 40px;
+    padding: 0;
+    margin-top: 0; /* Start at very top */
+    padding-top: 152px; /* 72px navbar + 80px content padding */
+    padding-bottom: 60px;
+    min-height: calc(100vh); /* Full viewport height */
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+/* Make banner background extend to top to eliminate white gap */
+.bg-primary.page-view {
+    margin-top: 0 !important;
+    padding-top: 152px !important; /* 72px navbar + 80px content */
+    position: relative;
+}
+
+/* Ensure no gap after banner */
+.page-view + * {
+    margin-top: 0 !important;
+}
+
+.page-view .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
 }
 
 .bg-primary {
-    background: linear-gradient(90deg,#2d3748,#285f88) !important;
+    background: linear-gradient(135deg, #1a365d 0%, #2d3748 50%, #285f88 100%) !important;
+    position: relative;
+    overflow: hidden;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Special handling for banner to eliminate white gap */
+.bg-primary.page-view {
+    overflow: visible;
+    background: linear-gradient(135deg, #1a365d 0%, #2d3748 50%, #285f88 100%) !important;
+}
+
+/* Extend banner background up to cover white gap */
+.bg-primary.page-view::after {
+    content: '';
+    position: absolute;
+    top: -72px;
+    left: 0;
+    right: 0;
+    height: 72px;
+    background: linear-gradient(135deg, #1a365d 0%, #2d3748 50%, #285f88 100%);
+    z-index: -1;
+}
+
+.bg-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Extend decorative overlay for banner to cover gap area */
+.bg-primary.page-view::before {
+    top: -72px;
+    height: calc(100% + 72px);
 }
 
 .bg-light {
-    background-color: #edf0fa !important;
+    background-color: #f7fafc !important;
 }
 
 .bg_custom {
@@ -16,11 +84,71 @@
 
 .navbar {
     font-size: 16px;
+    padding: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    min-height: 72px; /* Ensures consistent navbar height */
+    width: 100%;
+    margin: 0;
+}
+
+.navbar .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.navbar-brand img {
+    height: 40px;
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover img {
+    transform: scale(1.05);
 }
 
 .footer_custom {
-    /* background: linear-gradient(90deg,#2d3748,#285f88) !important; */
-    background: #285f88
+    background: linear-gradient(135deg, #1a365d 0%, #285f88 100%);
+    padding: 3rem 0 1rem;
+    color: #ffffff;
+}
+
+.footer_custom .copyright {
+    color: #ffffff;
+}
+
+.footer_custom .copyright p {
+    color: #ffffff !important;
+}
+
+.footer_custom .footer-menu {
+    gap: 1.5rem;
+}
+
+.footer_custom .footer-menu li {
+    margin: 0;
+    padding: 0 0.75rem;
+}
+
+.footer_custom .footer-menu li:first-child {
+    padding-left: 0;
+}
+
+.footer_custom .footer-menu li:last-child {
+    padding-right: 0;
+}
+
+.footer_custom .footer-menu a {
+    color: rgba(255, 255, 255, 0.9) !important;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    border-bottom: none !important;
+}
+
+.footer_custom .footer-menu a:hover {
+    color: #ffffff !important;
+    border-bottom: none !important;
 }
 
 /*
@@ -34,29 +162,33 @@
 
 .icon_some_large {
     color: #134f7d;
-    display: inline;
+    display: inline-block;
     text-align: center;
-    padding-top: 4em;
-    margin-left: 10em;
+    padding: 1em;
+    margin: 0.5em;
     transition: all 0.3s ease;
     font-size: 25px;
+    text-decoration: none;
 }
 
 .icon_some_large:hover {
-    color: #00c3c9;
+    color: #285f88;
+    transform: scale(1.1);
 }
 
 .icon_large {
-    color: #134f7d;
+    color: #285f88;
     display: block;
     text-align: center;
-    padding: 5px;
-    transition: all 0.3s ease;
-    font-size: 25px;
+    padding: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 3rem;
+    margin-bottom: 1rem;
 }
 
 .icon_large:hover {
-    color: #00c3c9;
+    color: #1a365d;
+    transform: scale(1.05);
 }
 
 .minipadding {
@@ -64,17 +196,20 @@
  }
  
 .subtitle_text1 {
-    margin-top: 2em;
-    font-size: 1.1rem;
-    margin-bottom: 0.4em;
-    color: #ffffff;
+    margin-top: 1.5em;
+    font-size: 1.25rem;
+    margin-bottom: 1em;
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.6;
+    font-weight: 400;
 }
 
 .subtitle_text2 {
-    padding-top: 6em;
-    font-size: 1.1rem;
+    padding-top: 1em;
+    font-size: 1.15rem;
     margin-bottom: 0.4em;
-    color: #ffffff;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
 }
 
 span.emphasize {
@@ -95,10 +230,85 @@ small {
     color: gray;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Override Bootstrap container to be uniform */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Remove any default margins that create white space */
+.bg-primary + .container,
+.page-view + .container {
+    margin-top: 0 !important;
+    padding-top: 4rem;
+}
+
+/* Ensure sections are uniform */
+.section {
+    width: 100%;
+    margin-top: 0;
+}
+
+/* Remove top margin from first section after banner */
+#services + .container .section,
+.container:first-of-type .section {
+    margin-top: 0;
+    padding-top: 4rem;
+}
+
 body { 
-    padding-top: 78px;
-    font-size: 1.2rem;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 0;
+    margin: 0;
+    font-size: 1.1rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    line-height: 1.6;
+    color: #2d3748;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #ffffff;
+}
+
+/* Ensure banner starts at top with no white gap */
+.bg-primary.page-view {
+    margin-top: 0 !important;
+}
+
+p {
+    margin-bottom: 1.25rem;
+    color: #4a5568;
+}
+
+.lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+.text-muted {
+    color: #718096 !important;
+}
+
+.nav-link {
+    transition: color 0.2s ease;
+    font-weight: 500;
+    padding: 0.5rem 1rem !important;
+}
+
+.nav-link:hover {
+    color: rgba(255, 255, 255, 1) !important;
 }
 
 .compact {
@@ -108,12 +318,18 @@ body {
 
 h2 {
     margin-top: 2em;
-    font-size: 2.5rem;
-    margin-bottom: 0.4em;
+    font-size: 2.75rem;
+    margin-bottom: 0.5em;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
 }
 
 h3 {
     margin-top: 1.5em;
+    font-size: 1.75rem;
+    font-weight: 600;
+    line-height: 1.3;
 }
 
 h4 {
@@ -122,13 +338,19 @@ h4 {
 }
 
 
-/* Offset anchors for links to  to adjust for fixed nav bar */
+/* Offset anchors for links to adjust for fixed nav bar */
 :target {
     display: block;
     position: relative;
-    top: -79px; 
+    top: -72px; /* Matches navbar height */
     visibility: hidden;
+    scroll-margin-top: 72px; /* Modern approach for anchor scrolling */
   }
+  
+/* Add scroll margin to all section anchors */
+[id] {
+    scroll-margin-top: 72px;
+}
 
 .logoBox {
     width: 100%;
@@ -169,12 +391,45 @@ h4 {
 	}
 }
 
-/* Card style */
+/* Modern Card style */
 .card_style {
-    width: 50rem;
-    height: 18rem;
-    padding-bottom: 5px;
-    border-radius: 2px;
+    border: none;
+    border-radius: 12px;
+    padding: 2rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card_style:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.card_style .card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.card_style .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    margin-bottom: 0.75rem;
+    color: #1a365d;
+}
+
+.card_style .card-text {
+    color: #4a5568;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
 }
 
 /* Manage Display Headers for Mobile Devices */
@@ -233,31 +488,30 @@ h4 {
     }
 
     .card_style {
-        width: 10rem;
-        height: 10rem;
-        padding-bottom: 5px;
-        border-radius: 2px;
-        justify-content: center;
-        align-items: center;
-        align-content: center;
+        padding: 1.5rem;
+        border-radius: 12px;
+    }
+    
+    .card_style .card-body {
+        padding: 1rem;
     }
 
     .icon_large {
-        color: #134f7d;
+        color: #285f88;
         display: block;
         text-align: center;
-        padding: 10px;
+        padding: 0.5rem;
         transition: all 0.3s ease;
-        font-size: 10px;
+        font-size: 2rem;
     }
     .icon_some_large {
         color: #134f7d;
-        display: inline;
+        display: inline-block;
         text-align: center;
-        padding-top: 4em;
-        margin-left: 3.5em;
+        padding: 0.5em;
+        margin: 0.25em;
         transition: all 0.3s ease;
-        font-size: 10px;
+        font-size: 18px;
     }
 }
 
