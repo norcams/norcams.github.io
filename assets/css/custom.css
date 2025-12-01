@@ -376,6 +376,77 @@ h4 {
     width: 100%;
 }
 
+/* Partners Logos - Fixed width row with wrap */
+.partners-logos-container {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 2rem 0;
+}
+
+.partners-logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.partner-logo {
+    object-fit: contain;
+    transition: opacity 0.3s ease;
+    display: block;
+}
+
+.partner-logo:hover {
+    opacity: 0.8;
+}
+
+/* Individual partner logo sizing - adjust as needed */
+.partner-logo-uio {
+    width: 125px;
+    height: auto;
+    max-height: 70px;
+}
+
+.partner-logo-uib {
+    width: 125px;
+    height: auto;
+    max-height: 70px;
+}
+
+.partner-logo-neic {
+    width: 125px;
+    height: auto;
+    max-height: 70px;
+}
+
+.partner-logo-naic {
+    width: 125px;
+    height: auto;
+    max-height: 70px;
+}
+
+.partner-logo-alice {
+    width: 125px;
+    height: auto;
+    max-height: 70px;
+}
+
+.partner-logo-atlas {
+    width: 125px;
+    height: auto;
+    max-height: 70px;
+}
+
+.partner-logo-wlcg {
+    width: 125px;
+    height: auto;
+    max-height: 70px;
+}
+
 .subpage-header {
 	margin-top: 2rem;
 	padding: 2rem 0rem 1rem 0rem;
