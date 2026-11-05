@@ -250,6 +250,21 @@ p {
     z-index: 1;
 }
 
+/* 10-year anniversary badge (2016-2026) */
+.anniversary-badge {
+    display: inline-block;
+    margin-bottom: 1rem;
+    padding: 0.4rem 1rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #fff;
+    background: #e8a33d;
+    border-radius: 999px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
 /* Hero heading */
 .display-4 {
     font-size: 3.5rem;
