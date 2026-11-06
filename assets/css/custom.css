@@ -71,6 +71,16 @@
     transition: transform 0.3s ease;
 }
 
+/* Wordmark companion for the anniversary GIF (icon-only mark otherwise loses the name) */
+.brand-wordmark {
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.35rem;
+    letter-spacing: 0.04em;
+    margin-left: 0.6rem;
+    vertical-align: middle;
+}
+
 .navbar-brand:hover img {
     transform: scale(1.05);
 }
@@ -248,6 +258,21 @@ p {
 .content-layer {
     position: relative;
     z-index: 1;
+}
+
+/* 10-year anniversary badge (2016-2026) */
+.anniversary-badge {
+    display: inline-block;
+    margin-bottom: 1rem;
+    padding: 0.4rem 1rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #fff;
+    background: #e8a33d;
+    border-radius: 999px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
 /* Hero heading */
