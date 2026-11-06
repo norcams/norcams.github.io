@@ -275,22 +275,6 @@ p {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
-/* Badge overlaid on the hero image (image is light, so the amber-on-navy
-   hero look is inverted here: navy fill + amber border keeps contrast) */
-.hero-image-wrap {
-    position: relative;
-}
-
-.hero-image-wrap .anniversary-badge {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    margin-bottom: 0;
-    background: rgba(23, 42, 66, 0.92);
-    border: 1px solid rgba(232, 163, 61, 0.8);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
-}
-
 /* Hero heading */
 .display-4 {
     font-size: 3.5rem;
