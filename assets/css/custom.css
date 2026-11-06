@@ -71,6 +71,16 @@
     transition: transform 0.3s ease;
 }
 
+/* Wordmark companion for the anniversary GIF (icon-only mark otherwise loses the name) */
+.brand-wordmark {
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.35rem;
+    letter-spacing: 0.04em;
+    margin-left: 0.6rem;
+    vertical-align: middle;
+}
+
 .navbar-brand:hover img {
     transform: scale(1.05);
 }
