@@ -287,6 +287,16 @@ p {
     border-radius: 12px;
 }
 
+/* 10-year anniversary crawl (iframe in the hero) */
+.hero-crawl {
+    overflow: hidden;
+    background: #000;
+}
+
+.hero-crawl iframe {
+    border: 0;
+}
+
 /* Footer divider */
 .footer-divider {
     border-color: rgba(255, 255, 255, 0.3) !important;

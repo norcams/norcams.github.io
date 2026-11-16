@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NREC – Episode X: A Decade in the Cloud</title>
+<style>
+  :root { --gold: #f5c518; --blue: #4bd5ee; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: #000; overflow: hidden; color: var(--gold);
+    font-family: "Franklin Gothic Medium", "Arial Narrow", "Helvetica Neue", Arial, sans-serif; }
+  canvas#stars { position: fixed; inset: 0; width: 100%; height: 100%; }
+
+  /* Opening line */
+  #intro { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+    color: var(--blue); font-size: 4.2vh; line-height: 1.5; letter-spacing: .02em; opacity: 0;
+    padding: 0 10vw; text-align: left; font-family: "Helvetica Neue", Arial, sans-serif; }
+
+  /* Title */
+  #title { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center;
+    justify-content: center; opacity: 0; pointer-events: none; }
+  #title .logo { font-size: 30vh; font-weight: 900; letter-spacing: .06em; line-height: .9;
+    color: transparent; -webkit-text-stroke: .9vh var(--gold);
+    text-shadow: 0 0 6vh rgba(245,197,24,.35); font-family: "Arial Black", "Helvetica Neue", Arial, sans-serif; }
+  #title .ten { font-size: 7vh; font-weight: 800; letter-spacing: .5em; margin-top: 2vh; padding-left: .5em; }
+
+  /* Crawl */
+  /* The crawl text is drawn on the canvas; this block is only the editable source. */
+  #crawl { display: none; }
+
+  /* End card */
+  #end { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; opacity: 0; pointer-events: none; gap: 2.5vh; }
+  #end .big { font-size: 11vh; font-weight: 900; letter-spacing: .04em; text-shadow: 0 0 5vh rgba(245,197,24,.4); }
+  #end .dates { font-size: 3.2vh; letter-spacing: .25em; padding: 0 4vw; line-height: 1.6; color: #fff; opacity: .85; }
+  #end .may { font-size: 4.2vh; color: var(--blue); font-style: italic; margin-top: 2vh; }
+  #end .from { font-size: 2.6vh; color: #aaa; letter-spacing: .2em; margin-top: 3vh; }
+
+  /* Start screen & controls */
+  #start { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 3vh; background: radial-gradient(ellipse at center, rgba(0,0,0,.2), rgba(0,0,0,.85)); z-index: 10; text-align: center; }
+  #start h2 { font-size: 6vh; letter-spacing: .1em; }
+  #start p { color: #bbb; font-size: 2.2vh; max-width: 60ch; line-height: 1.6; font-family: "Helvetica Neue", Arial, sans-serif; }
+  button { font: inherit; cursor: pointer; border: 2px solid var(--gold); color: var(--gold); background: transparent;
+    padding: 1.4vh 3.5vh; font-size: 2.6vh; letter-spacing: .15em; text-transform: uppercase; border-radius: 4px; transition: .2s; }
+  button:hover, button:focus-visible { background: var(--gold); color: #000; outline: none; }
+  #start .row { display: flex; gap: 2vh; flex-wrap: wrap; justify-content: center; }
+  #controls { position: fixed; right: 2vh; bottom: 2vh; display: flex; gap: 1vh; z-index: 11; opacity: 0; transition: opacity .4s; }
+  #controls button { font-size: 1.6vh; padding: .8vh 1.6vh; border-width: 1px; }
+  body.ui #controls { opacity: .8; }
+  body.running { cursor: none; }
+  /* Embed mode (nrec10.html?embed): silent loop + link to the full version */
+  #watch { display: none; position: fixed; right: 2.5vh; top: 2.5vh; z-index: 12; font-size: 3.4vh; padding: 1vh 2vh;
+    color: #000; background: var(--gold); border-radius: 4px; text-decoration: none; letter-spacing: .08em;
+    font-weight: 700; text-transform: uppercase; box-shadow: 0 0 3vh rgba(0,0,0,.6); opacity: .85; }
+  #watch:hover, #watch:focus-visible { opacity: 1; outline: 2px solid #fff; }
+  body.embed #watch { display: block; }
+  body.embed #start, body.embed #controls { display: none !important; }
+  body.embed, body.embed.running { cursor: default; }
+  body.running.ui { cursor: default; }
+</style>
+</head>
+<body>
+<canvas id="stars"></canvas>
+
+<div id="intro">Ten years ago, in a pair of data centres<br>not so far away....</div>
+
+<div id="title"><div class="logo">NREC</div><div class="ten">10 YEARS</div></div>
+
+<div id="crawl">
+  <!-- ======= EDIT THE CRAWL TEXT HERE ======= -->
+  <div class="episode">Episode X</div>
+  <h1>A Decade in the Cloud</h1>
+
+  <p>It is a period of growing demand. Researchers, teachers and students across Norway need servers: fast, flexible and under their own control. Yet too many of them wait in line for hardware that never seems to arrive.</p>
+
+  <p>In November 2016, a small alliance of engineers from the Universities of Bergen and Oslo, with support from NeIC and Uninett, lit up a new community cloud. Built on OpenStack and named UH-IaaS, it entered production with two regions, BGO and OSL, standing guard at either end of the country.</p>
+
+  <p>Armed with open source and custom tooling forged in their own workshops, the engineers built, upgraded and rebuilt the platform, release after release, through migrations, maintenance windows and the occasional late-night alarm.</p>
+
+  <p>In time the cloud took a new name: NREC, the Norwegian Research and Education Cloud. GOLD images, object storage, DNS, shared HPC and GPU-accelerated instances joined its arsenal, and new institutions joined the journey.</p>
+
+  <p>Today, countless virtual machines power research, teaching and student projects, from a single test instance to entire scientific clusters, all just one Feide login away.</p>
+
+  <p>To every user who launched an instance, filed a ticket, reported a bug or forgot to delete a snapshot: THANK YOU.</p>
+
+  <p>To our partners and colleagues at every institution that trusted us along the way: THANK YOU.</p>
+
+  <p class="center">The first ten years are complete. The next episode begins now....</p>
+  <!-- ======= END OF CRAWL TEXT ======= -->
+</div>
+
+<div id="end">
+  <div class="big">THANK YOU</div>
+  <div class="dates">IN PRODUCTION SINCE 16.11.2016<br>AND STILL COUNTING</div>
+  <div class="may">May the Cloud be with you.</div>
+  <div class="from">THE NREC TEAM · UiB · UiO</div>
+</div>
+
+<div id="start">
+  <h2>NREC · 10 YEARS</h2>
+  <p>Press <b>Start</b> (or Space). F = fullscreen · M = mute · R = replay · C = switch music.<br>The music is original and written in code, so it's free to use anywhere.</p>
+  <div class="row">
+    <button id="go">▶ Orchestral</button>
+    <button id="goSid">▶ C64 SID</button>
+    <button id="goSilent">Start silent</button>
+  </div>
+</div>
+
+<a id="watch" href="nrec10.html" target="_blank" rel="noopener">▶ Watch with sound</a>
+
+<div id="controls">
+  <button id="bMute">Mute</button>
+  <button id="bStyle">Music: Orchestral</button>
+  <button id="bReplay">Replay</button>
+  <button id="bFull">Fullscreen</button>
+</div>
+
+<script>
+/* ---------------- Timeline (seconds) ---------------- */
+const BAR = 2.4;                       // 100 bpm, 4/4
+const T = {
+  introIn: 0.8, introOut: 5.8,
+  hit: 7.0,                            // title + first chord
+  titleEnd: 16.0,
+  crawlStart: 8.0,
+};
+T.theme1 = T.hit + 2 * BAR;            // 11.8
+T.theme2 = T.theme1 + 8 * BAR;         // 31.0
+T.quiet1 = T.theme2 + 8 * BAR;         // 50.2
+T.quiet2 = T.quiet1 + 8 * BAR;         // 69.4
+T.finale = T.quiet2 + 8 * BAR;         // 88.6
+T.finalHit = T.finale + 2 * BAR;       // 93.4
+T.crawlEnd = T.finalHit;
+T.total = T.finalHit + 2 * BAR + 3;
+
+/* ---------------- Stars ---------------- */
+const cv = document.getElementById('stars'), cx = cv.getContext('2d');
+let stars = [];
+function makeStars() {
+  const dpr = window.devicePixelRatio || 1;
+  cv.width = innerWidth * dpr; cv.height = innerHeight * dpr;
+  cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const n = Math.round(innerWidth * innerHeight / 2200);
+  stars = Array.from({length: n}, () => ({
+    x: Math.random() * innerWidth, y: Math.random() * innerHeight,
+    r: Math.random() < .93 ? Math.random() * .9 + .2 : Math.random() * 1.3 + .9,
+    p: Math.random() * Math.PI * 2, s: .5 + Math.random() * 2
+  }));
+}
+function drawStars(t) {
+  cx.clearRect(0, 0, innerWidth, innerHeight);
+  for (const s of stars) {
+    const a = .55 + .45 * Math.sin(s.p + t * s.s);
+    cx.globalAlpha = a; cx.fillStyle = '#fff';
+    cx.beginPath(); cx.arc(s.x, s.y, s.r, 0, 6.283); cx.fill();
+  }
+  cx.globalAlpha = 1;
+}
+/* ---------------- Crawl: laid out and projected by hand (no CSS 3D) ---------------- */
+const FONT_FAMILY = '"Franklin Gothic Medium", "Arial Narrow", "Helvetica Neue", Arial, sans-serif';
+let L = {lines: [], total: 0, pw: 0};
+function layoutCrawl() {
+  const W = innerWidth, H = innerHeight, pw = Math.min(.92 * W, 1.05 * H);
+  const lines = []; let y = 0;
+  for (const el of document.getElementById('crawl').children) {
+    let size, align, gap, text = el.textContent.replace(/\s+/g, ' ').trim();
+    if (el.classList.contains('episode')) { size = .05 * H; align = 'center'; gap = .012 * H; }
+    else if (el.tagName === 'H1') { size = .09 * H; align = 'center'; gap = .06 * H; text = text.toUpperCase(); }
+    else { size = .056 * H; align = el.classList.contains('center') ? 'center' : 'justify'; gap = .06 * H; }
+    cx.font = `700 ${size}px ${FONT_FAMILY}`;
+    const space = cx.measureText(' ').width, lh = size * 1.35;
+    const words = text.split(' ').map(w => ({w, wd: cx.measureText(w).width}));
+    let cur = [], curW = 0;
+    const push = last => { lines.push({words: cur, size, lh, y, space, justify: align === 'justify' && !last}); y += lh; cur = []; curW = 0; };
+    for (const wd of words) {
+      const add = (cur.length ? space : 0) + wd.wd;
+      if (cur.length && curW + add > pw) push(false);
+      curW += (cur.length ? space : 0) + wd.wd; cur.push(wd);
+    }
+    if (cur.length) push(true);
+    y += gap;
+  }
+  L = {lines, total: y, pw};
+}
+function drawCrawl(s, fade) {
+  if (fade <= 0) return;
+  const W = innerWidth, H = innerHeight, dpr = window.devicePixelRatio || 1;
+  const P = .5 * H, OY = .8 * H, SIN = Math.sin(25 * Math.PI / 180), COS = Math.cos(25 * Math.PI / 180);
+  const proj = d => { const k = P / (P + d * SIN); return [OY + (H - d * COS - OY) * k, k]; };
+  cx.fillStyle = '#f5c518'; cx.textBaseline = 'top';
+  for (const ln of L.lines) {
+    const dTop = s - ln.y, dBot = dTop - ln.lh;
+    if (dTop <= 0) continue;                                   // still below the screen
+    const [yT, kT] = proj(dTop), [yB, kB] = proj(Math.max(dBot, -.5 * H));
+    if (yB < 0 || yT > H) continue;
+    const a = fade * clamp((yT / H - .02) / .2);               // fade out near the top
+    if (a <= 0) continue;
+    const k = (kT + kB) / 2, vs = (yB - yT) / ln.lh;
+    cx.setTransform(dpr * k, 0, 0, dpr * vs, dpr * W / 2, dpr * yT);
+    cx.globalAlpha = a; cx.font = `700 ${ln.size}px ${FONT_FAMILY}`;
+    const sumW = ln.words.reduce((q, w) => q + w.wd, 0);
+    const gap = ln.justify && ln.words.length > 1 ? (L.pw - sumW) / (ln.words.length - 1) : ln.space;
+    let x = ln.justify ? -L.pw / 2 : -(sumW + gap * (ln.words.length - 1)) / 2;
+    const ty = (ln.lh - ln.size) / 2;
+    for (const w of ln.words) { cx.fillText(w.w, x, ty); x += w.wd + gap; }
+  }
+  cx.setTransform(dpr, 0, 0, dpr, 0, 0); cx.globalAlpha = 1;
+}
+addEventListener('resize', () => { makeStars(); layoutCrawl(); }); makeStars(); layoutCrawl();
+
+/* ---------------- Audio: original fanfare ---------------- */
+let ctx = null, master = null, muted = false, silentMode = false;
+const mf = m => 440 * Math.pow(2, (m - 69) / 12);
+
+function buildAudio() {
+  ctx = new (window.AudioContext || window.webkitAudioContext)();
+  const comp = ctx.createDynamicsCompressor();
+  comp.threshold.value = -18; comp.ratio.value = 4;
+  master = ctx.createGain(); master.gain.value = (muted || silentMode) ? 0 : VOL();
+  // simple generated reverb
+  const len = ctx.sampleRate * 2.8, ir = ctx.createBuffer(2, len, ctx.sampleRate);
+  for (let c = 0; c < 2; c++) { const d = ir.getChannelData(c);
+    for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 3); }
+  const verb = ctx.createConvolver(); verb.buffer = ir;
+  const wet = ctx.createGain(); wet.gain.value = .35;
+  master.connect(comp); master.connect(verb); verb.connect(wet); wet.connect(comp);
+  comp.connect(ctx.destination);
+}
+let noiseBuf = null;
+function noise() {
+  if (!noiseBuf) { noiseBuf = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate);
+    const d = noiseBuf.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1; }
+  const n = ctx.createBufferSource(); n.buffer = noiseBuf; return n;
+}
+function brass(m, t, dur, vel = .14, bright = 1) {
+  const g = ctx.createGain(), f = ctx.createBiquadFilter(); f.type = 'lowpass'; f.Q.value = 1.5;
+  const base = 500 + 300 * bright, peak = 1600 + 2200 * bright * vel / .14;
+  f.frequency.setValueAtTime(base, t); f.frequency.linearRampToValueAtTime(peak, t + .07);
+  f.frequency.exponentialRampToValueAtTime(Math.max(base, peak * .55), t + .35);
+  g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(vel, t + .045);
+  g.gain.setTargetAtTime(vel * .75, t + .08, .15);
+  g.gain.setTargetAtTime(0, t + dur * .95, .09);
+  for (const det of [-7, 7, 0]) {
+    const o = ctx.createOscillator(); o.type = det ? 'sawtooth' : 'square';
+    o.frequency.value = mf(m); o.detune.value = det;
+    const og = ctx.createGain(); og.gain.value = det ? 1 : .35;
+    o.connect(og); og.connect(f); o.start(t); o.stop(t + dur + .6);
+  }
+  f.connect(g); g.connect(master);
+}
+function strings(notes, t, dur, vel = .045) {
+  for (const m of notes) {
+    const g = ctx.createGain(), f = ctx.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 1700;
+    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(vel, t + .5);
+    g.gain.setTargetAtTime(0, t + dur, .35);
+    for (const det of [-11, 0, 11]) {
+      const o = ctx.createOscillator(); o.type = 'sawtooth'; o.frequency.value = mf(m); o.detune.value = det;
+      const lfo = ctx.createOscillator(), lg = ctx.createGain(); lfo.frequency.value = 5 + Math.random();
+      lg.gain.value = 6; lfo.connect(lg); lg.connect(o.detune); lfo.start(t); lfo.stop(t + dur + 2);
+      o.connect(f); o.start(t); o.stop(t + dur + 2);
+    }
+    f.connect(g); g.connect(master);
+  }
+}
+function timpani(m, t, vel = .5) {
+  const o = ctx.createOscillator(), g = ctx.createGain(); o.type = 'sine';
+  o.frequency.setValueAtTime(mf(m) * 1.4, t); o.frequency.exponentialRampToValueAtTime(mf(m), t + .08);
+  g.gain.setValueAtTime(vel, t); g.gain.exponentialRampToValueAtTime(.001, t + 1.6);
+  o.connect(g); g.connect(master); o.start(t); o.stop(t + 1.7);
+  const n = noise(), nf = ctx.createBiquadFilter(), ng = ctx.createGain();
+  nf.type = 'lowpass'; nf.frequency.value = 900; ng.gain.setValueAtTime(vel * .5, t);
+  ng.gain.exponentialRampToValueAtTime(.001, t + .25);
+  n.connect(nf); nf.connect(ng); ng.connect(master); n.start(t); n.stop(t + .3);
+}
+function snare(t, vel = .12) {
+  const n = noise(), f = ctx.createBiquadFilter(), g = ctx.createGain();
+  f.type = 'bandpass'; f.frequency.value = 2200; f.Q.value = .8;
+  g.gain.setValueAtTime(vel, t); g.gain.exponentialRampToValueAtTime(.001, t + .16);
+  n.connect(f); f.connect(g); g.connect(master); n.start(t); n.stop(t + .2);
+}
+function cymbal(t, vel = .18) {
+  const n = noise(), f = ctx.createBiquadFilter(), g = ctx.createGain();
+  f.type = 'highpass'; f.frequency.value = 5500;
+  g.gain.setValueAtTime(vel, t); g.gain.exponentialRampToValueAtTime(.001, t + 3);
+  n.connect(f); f.connect(g); g.connect(master); n.start(t); n.stop(t + 3.1);
+}
+function harp(m, t, vel = .09) {
+  const o = ctx.createOscillator(), g = ctx.createGain(); o.type = 'triangle'; o.frequency.value = mf(m);
+  g.gain.setValueAtTime(vel, t); g.gain.exponentialRampToValueAtTime(.001, t + 1.8);
+  o.connect(g); g.connect(master); o.start(t); o.stop(t + 1.9);
+}
+function roll(m, t, dur, v0, v1) {
+  const step = .07, n = Math.floor(dur / step);
+  for (let i = 0; i < n; i++) timpani(m, t + i * step, v0 + (v1 - v0) * i / n);
+}
+
+// Chords (MIDI): Bb, Gm, Eb, F, Cm
+const CH = {
+  Bb: {root: 46, pad: [58, 62, 65, 70]}, Gm: {root: 43, pad: [55, 58, 62, 67]},
+  Eb: {root: 39, pad: [55, 58, 63, 67]}, F:  {root: 41, pad: [57, 60, 65, 69]},
+  Cm: {root: 36, pad: [55, 60, 63, 67]},
+};
+const PROG = ['Bb', 'Gm', 'Eb', 'F', 'Bb', 'Eb', 'Cm', 'Bb'];
+// Original theme: [midi, beats] per bar
+const THEME = [
+  [[65,.75],[65,.25],[70,1],[74,1],[77,1]],
+  [[79,2],[77,.5],[75,.5],[74,1]],
+  [[75,1.5],[74,.5],[72,1],[70,1]],
+  [[72,3],[65,.75],[65,.25]],
+  [[70,1],[74,1],[77,1.5],[82,.5]],
+  [[79,2],[75,1],[79,1]],
+  [[77,1.5],[75,.5],[74,1],[72,1]],
+  [[70,4]],
+];
+const HYMN = [[[70,4]],[[72,2],[74,2]],[[75,4]],[[72,4]],[[74,4]],[[75,2],[77,2]],[[79,2],[77,2]],[[74,4]]];
+
+function playBars(t0, melody, opts) {
+  const beat = BAR / 4;
+  melody.forEach((bar, b) => {
+    const bt = t0 + b * BAR, ch = CH[PROG[b]];
+    let pos = 0;
+    for (const [m, d] of bar) {
+      brass(m, bt + pos * beat, d * beat, opts.vel, opts.bright);
+      if (opts.double) brass(m - 12, bt + pos * beat, d * beat, opts.vel * .55, opts.bright);
+      if (opts.harmony) brass(m - (m % 12 === 10 || m % 12 === 3 ? 4 : 3), bt + pos * beat, d * beat, opts.vel * .45, opts.bright);
+      pos += d;
+    }
+    strings(ch.pad, bt, BAR - .05, opts.pad);
+    if (opts.bass) brass(ch.root + 12, bt, BAR * .98, opts.vel * .6, .3);
+    if (opts.drums) {
+      timpani(ch.root, bt, .45); timpani(ch.root + 7 - 12 + 12, bt + 2 * beat, .3);
+      for (const x of [0, 1, 1.5, 2, 3, 3.25, 3.5]) snare(bt + x * beat, x % 1 ? .06 : .1);
+    }
+    if (opts.harp) {
+      const arp = [ch.pad[0], ch.pad[1], ch.pad[2], ch.pad[3], ch.pad[3] + 12, ch.pad[3], ch.pad[2], ch.pad[1]];
+      arp.forEach((m, i) => harp(m, bt + i * beat / 2, .07));
+    }
+  });
+}
+
+function scheduleMusic(s) { // s = audio-clock time of t=0
+  const A = x => s + x;
+  // intro: low shimmer
+  strings([46, 58], A(1), 5.2, .02);
+  // big hit under the title
+  roll(34, A(T.hit - 1.2), 1.15, .05, .5);
+  cymbal(A(T.hit), .22); timpani(34, A(T.hit), .8);
+  for (const m of [58, 62, 65, 70, 74]) brass(m, A(T.hit), BAR * 1.9, .1, 1.2);
+  brass(46, A(T.hit), BAR * 1.9, .12, .5);
+  strings(CH.Bb.pad.concat([46]), A(T.hit), BAR * 2, .05);
+  roll(41, A(T.theme1 - 1.0), .95, .05, .35);
+  // theme twice
+  playBars(A(T.theme1), THEME, {vel: .13, bright: 1, double: true, bass: true, drums: true, pad: .04});
+  cymbal(A(T.theme2), .15);
+  playBars(A(T.theme2), THEME, {vel: .14, bright: 1.2, double: true, harmony: true, bass: true, drums: true, pad: .05});
+  // quiet: solo horn hymn, then harp
+  playBars(A(T.quiet1), HYMN, {vel: .08, bright: .25, pad: .04});
+  playBars(A(T.quiet2), HYMN, {vel: .06, bright: .2, pad: .035, harp: true});
+  // finale build: Eb -> F -> big Bb
+  const beat = BAR / 4;
+  strings(CH.Eb.pad, A(T.finale), BAR, .05); strings(CH.F.pad, A(T.finale + BAR), BAR, .055);
+  brass(39 + 12, A(T.finale), BAR, .09, .4); brass(41 + 12, A(T.finale + BAR), BAR, .1, .5);
+  [[75,2],[79,2],[77,1],[79,1],[81,2]].reduce((p, [m, d]) => {
+    brass(m, A(T.finale + p * beat), d * beat, .12, 1); brass(m - 12, A(T.finale + p * beat), d * beat, .07, 1); return p + d; }, 0);
+  roll(41, A(T.finale + BAR), BAR - .05, .08, .6);
+  cymbal(A(T.finalHit), .25); timpani(34, A(T.finalHit), .9);
+  for (const m of [58, 62, 65, 70, 74, 82]) brass(m, A(T.finalHit), BAR * 2.2, .1, 1.3);
+  brass(46, A(T.finalHit), BAR * 2.2, .13, .5); brass(34, A(T.finalHit), BAR * 2.2, .1, .3);
+  strings(CH.Bb.pad.concat([46, 74]), A(T.finalHit), BAR * 2.2, .055);
+  timpani(46, A(T.finalHit + BAR * 2.2), .6); timpani(34, A(T.finalHit + BAR * 2.2 + .3), .8);
+}
+
+/* ---------------- Visual sequencer ---------------- */
+const $ = id => document.getElementById(id);
+const EMBED = new URLSearchParams(location.search).has('embed');
+const intro = $('intro'), title = $('title'), crawl = $('crawl'), endCard = $('end');
+let startClock = null, perfStart = null, running = false;
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+function now() { return ctx ? ctx.currentTime - startClock : (performance.now() - perfStart) / 1000; }
+
+function frame() {
+  const t = running ? now() : 0;
+  drawStars(performance.now() / 1000);
+  if (running) {
+    // intro
+    intro.style.opacity = t < T.introIn ? clamp((t) / T.introIn) * 0
+      : t < T.introOut ? clamp((t - T.introIn) / 1.2) : clamp(1 - (t - T.introOut) / .9);
+    // title: start huge, recede to nothing
+    if (t >= T.hit && t < T.titleEnd + .5) {
+      const p = clamp((t - T.hit) / (T.titleEnd - T.hit));
+      const sc = 2.6 * Math.pow(0.012 / 2.6, p);       // exponential shrink
+      title.style.opacity = p > .85 ? clamp((1 - p) / .15) : 1;
+      title.style.transform = `scale(${sc})`;
+    } else title.style.opacity = 0;
+    // crawl
+    // Phase A: steady reading pace. Phase B (last 8 s): text accelerates away to the horizon.
+    const H = innerHeight, readEnd = L.total + 1.2 * H, farEnd = L.total + 4.8 * H;
+    const tB = T.crawlEnd - 8;
+    let s;
+    if (t < tB) s = clamp((t - T.crawlStart) / (tB - T.crawlStart)) * readEnd;
+    else { const q = clamp((t - tB) / 8); s = readEnd + (farEnd - readEnd) * (0.1 * q + 0.9 * q * q * q); }
+    drawCrawl(s, clamp((T.crawlEnd + 1 - t) / 2.5));
+    // end card
+    endCard.style.opacity = clamp((t - T.finalHit + .1) / 1.6);
+    if (EMBED && t > T.total + 1) begin(false);
+    else if (t > T.total + 4) running = false;
+  }
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+
+/* ---------------- C64 / SID-style soundtrack ---------------- */
+let sidBus = null;
+function buildSidBus(s) {
+  // SID-ish resonant lowpass + DC-blocking highpass
+  const lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.Q.value = 5;
+  lp.frequency.setValueAtTime(250, s); lp.frequency.exponentialRampToValueAtTime(900, s + 4);
+  lp.frequency.exponentialRampToValueAtTime(7000, s + T.hit);
+  const hp = ctx.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = 35;
+  lp.connect(hp); hp.connect(master); sidBus = lp;
+}
+// Pulse-wave voice with pulse-width modulation (saw minus delayed saw), optional vibrato.
+// steps = [[time, midi], ...] so one voice can play arpeggios.
+function sidPulse(steps, t, dur, {vel = .05, duty = .25, sweep = 0, vib = 0, tri = false} = {}) {
+  const env = ctx.createGain();
+  env.gain.setValueAtTime(0, t); env.gain.linearRampToValueAtTime(vel, t + .004);
+  env.gain.setTargetAtTime(vel * .7, t + .01, .08); env.gain.setTargetAtTime(0, t + dur, .025);
+  const end = t + dur + .25, oscs = [];
+  if (tri) {
+    const o = ctx.createOscillator(); o.type = 'triangle'; o.connect(env); oscs.push(o);
+  } else {
+    const o1 = ctx.createOscillator(), o2 = ctx.createOscillator(), dl = ctx.createDelay(.1), inv = ctx.createGain();
+    o1.type = o2.type = 'sawtooth'; inv.gain.value = -1;
+    o1.connect(env); o2.connect(dl); dl.connect(inv); inv.connect(env); oscs.push(o1, o2);
+    for (const [ts, m] of steps) {
+      const f = mf(m), p = Math.min(.9, Math.max(.08, duty + sweep * (ts - t) / Math.max(dur, .01)));
+      dl.delayTime.setValueAtTime(p / f, ts);
+    }
+    if (sweep && steps.length === 1) dl.delayTime.linearRampToValueAtTime(Math.min(.9, Math.max(.08, duty + sweep)) / mf(steps[0][1]), t + dur);
+  }
+  for (const o of oscs) for (const [ts, m] of steps) o.frequency.setValueAtTime(mf(m), ts);
+  if (vib) {
+    const l = ctx.createOscillator(), lg = ctx.createGain(); l.frequency.value = 6;
+    lg.gain.setValueAtTime(0, t); lg.gain.linearRampToValueAtTime(0, t + .15); lg.gain.linearRampToValueAtTime(vib, t + .4);
+    l.connect(lg); for (const o of oscs) lg.connect(o.detune); l.start(t); l.stop(end);
+  }
+  for (const o of oscs) { o.start(t); o.stop(end); }
+  env.connect(sidBus);
+}
+const sidNote = (m, t, dur, o) => sidPulse([[t, m]], t, dur, o);
+function sidArp(notes, t, dur, vel = .022, step = .025) {
+  const steps = []; for (let x = 0, i = 0; x < dur; x += step, i++) steps.push([t + x, notes[i % notes.length]]);
+  sidPulse(steps, t, dur, {vel, duty: .5});
+}
+function sidKick(t, v = .55) {
+  const o = ctx.createOscillator(), g = ctx.createGain(); o.type = 'triangle';
+  o.frequency.setValueAtTime(220, t); o.frequency.exponentialRampToValueAtTime(40, t + .09);
+  g.gain.setValueAtTime(v, t); g.gain.exponentialRampToValueAtTime(.001, t + .18);
+  o.connect(g); g.connect(sidBus); o.start(t); o.stop(t + .2);
+}
+function sidNoise(t, len, v, hpf) {
+  const n = noise(), f = ctx.createBiquadFilter(), g = ctx.createGain(); f.type = 'highpass'; f.frequency.value = hpf;
+  g.gain.setValueAtTime(v, t); g.gain.exponentialRampToValueAtTime(.001, t + len);
+  n.connect(f); f.connect(g); g.connect(sidBus); n.start(t); n.stop(t + len + .05);
+}
+const sidSnare = (t, v = .22) => { sidNoise(t, .14, v, 900); sidPulse([[t, 57], [t + .02, 50], [t + .04, 45]], t, .06, {vel: v * .25, duty: .5}); };
+const sidHat = (t, v = .06) => sidNoise(t, .035, v, 7000);
+const sidCrash = (t, v = .2) => sidNoise(t, 1.6, v, 3500);
+
+function sidBars(t0, melody, o) {
+  const beat = BAR / 4;
+  melody.forEach((bar, b) => {
+    const bt = t0 + b * BAR, ch = CH[PROG[b]];
+    let pos = 0;
+    for (const [m, d] of bar) {
+      const nt = bt + pos * beat, nd = d * beat * .95;
+      sidNote(m, nt, nd, {vel: o.lead, duty: o.tri ? .5 : .2, sweep: o.tri ? 0 : .35, vib: d >= 1 ? 18 : 0, tri: o.tri});
+      if (o.echo) sidNote(m + 12, nt + beat * .75, nd, {vel: o.lead * .3, duty: .5, vib: d >= 1 ? 18 : 0});
+      pos += d;
+    }
+    sidArp(ch.pad, bt, BAR - .01, o.arp, o.arpStep || .025);
+    if (o.bassLong) sidNote(ch.root, bt, BAR * .97, {vel: .06, tri: true});
+    else for (let i = 0; i < 8; i++) sidNote(ch.root + (i % 2 ? 12 : 0), bt + i * beat / 2, beat / 2 * .8, {vel: o.bass, duty: .4});
+    if (o.drums) {
+      sidKick(bt); sidKick(bt + 2 * beat); if (o.drums > 1) sidKick(bt + 2.5 * beat, .4);
+      sidSnare(bt + beat); sidSnare(bt + 3 * beat);
+      for (let i = 0; i < 8; i++) sidHat(bt + i * beat / 2, i % 2 ? .04 : .06);
+    } else if (o.hats) for (let i = 0; i < 8; i++) sidHat(bt + i * beat / 2, .025);
+  });
+}
+
+function scheduleSid(s) {
+  const A = x => s + x, beat = BAR / 4;
+  buildSidBus(s);
+  // intro: filter-swept arpeggio
+  sidArp(CH.Bb.pad, A(.8), T.hit - .8, .02);
+  sidNote(46, A(3.5), T.hit - 3.5, {vel: .05, tri: true});
+  for (let i = 0; i < 8; i++) sidSnare(A(T.hit - 1.2 + i * .15), .05 + i * .025);
+  // title hit
+  sidCrash(A(T.hit), .25); sidKick(A(T.hit), .7);
+  sidNote(70, A(T.hit), BAR * 1.9, {vel: .06, duty: .1, sweep: .7, vib: 22});
+  sidArp([58, 62, 65, 70, 74, 77], A(T.hit), BAR * 2, .025);
+  for (let i = 0; i < 16; i++) sidNote(34 + (i % 2 ? 12 : 0), A(T.hit + i * beat / 2), beat / 2 * .8, {vel: .06, duty: .4});
+  // themes
+  sidBars(A(T.theme1), THEME, {lead: .055, arp: .018, bass: .06, drums: 1});
+  sidCrash(A(T.theme2), .15);
+  sidBars(A(T.theme2), THEME, {lead: .06, arp: .02, bass: .065, drums: 2, echo: true});
+  // quiet sections
+  sidBars(A(T.quiet1), HYMN, {lead: .09, arp: .012, arpStep: .05, bassLong: true, tri: true});
+  sidBars(A(T.quiet2), HYMN, {lead: .04, arp: .016, bass: .035, hats: true});
+  // finale build
+  const fin = [[75,2],[79,2],[77,1],[79,1],[81,2]];
+  fin.reduce((p, [m, d]) => { sidNote(m, A(T.finale + p * beat), d * beat * .95, {vel: .06, duty: .2, sweep: .3, vib: 18});
+    sidNote(m + 12, A(T.finale + p * beat + beat * .75), d * beat * .9, {vel: .018, duty: .5}); return p + d; }, 0);
+  sidArp(CH.Eb.pad, A(T.finale), BAR, .02); sidArp(CH.F.pad, A(T.finale + BAR), BAR, .022);
+  for (let i = 0; i < 16; i++) { sidNote((i < 8 ? 39 : 41) + (i % 2 ? 12 : 0), A(T.finale + i * beat / 2), beat / 2 * .8, {vel: .06, duty: .4}); }
+  sidKick(A(T.finale)); sidKick(A(T.finale + 2 * beat));
+  for (let i = 0; i < 16; i++) sidSnare(A(T.finale + BAR + i * beat / 4), .05 + i * .015);
+  // final hit
+  sidCrash(A(T.finalHit), .18); sidKick(A(T.finalHit), .6);
+  sidNote(82, A(T.finalHit), BAR * 2.2, {vel: .055, duty: .1, sweep: .7, vib: 25});
+  sidNote(70, A(T.finalHit), BAR * 2.2, {vel: .04, duty: .3, sweep: .5});
+  sidArp([58, 62, 65, 70, 74, 77, 82], A(T.finalHit), BAR * 2.2, .022, .02);
+  sidNote(34, A(T.finalHit), BAR * 2.2, {vel: .07, tri: true});
+  sidKick(A(T.finalHit + BAR * 2.2), .6); sidNoise(A(T.finalHit + BAR * 2.2), .8, .12, 2500);
+}
+
+let musicStyle = 'orch';
+function VOL() { return musicStyle === 'sid' ? 1.3 : .55; }
+const STYLE_NAME = {orch: 'Orchestral', sid: 'C64 SID'};
+function begin(withMusic, style) {
+  if (style) musicStyle = style;
+  silentMode = !withMusic;
+  if (ctx) { try { ctx.close(); } catch (e) {} ctx = null; noiseBuf = null; }
+  if (withMusic) { try { buildAudio(); } catch (e) { ctx = null; } }
+  if (ctx) { startClock = ctx.currentTime + .15; (musicStyle === 'sid' ? scheduleSid : scheduleMusic)(startClock); }
+  $('bStyle').textContent = 'Music: ' + STYLE_NAME[musicStyle];
+  perfStart = performance.now() + 150;
+  intro.style.opacity = 0; title.style.opacity = 0; endCard.style.opacity = 0;
+  $('start').style.display = 'none';
+  document.body.classList.add('running');
+  $('bMute').textContent = (muted || silentMode) ? 'Unmute' : 'Mute';
+  running = true;
+}
+function toggleMute() {
+  if (!ctx) { begin(true); return; }
+  if (silentMode) { silentMode = false; muted = false; } else muted = !muted;
+  if (master) master.gain.setTargetAtTime(muted ? 0 : VOL(), ctx.currentTime, .05);
+  $('bMute').textContent = muted ? 'Unmute' : 'Mute';
+}
+function fullscreen() {
+  if (document.fullscreenElement) document.exitFullscreen();
+  else document.documentElement.requestFullscreen?.().catch(() => {});
+}
+const otherStyle = () => musicStyle === 'sid' ? 'orch' : 'sid';
+$('go').onclick = () => begin(true, 'orch');
+$('goSid').onclick = () => begin(true, 'sid');
+$('goSilent').onclick = () => begin(false);
+$('bMute').onclick = toggleMute;
+$('bReplay').onclick = () => begin(!silentMode);
+$('bStyle').onclick = () => begin(true, otherStyle());
+$('bFull').onclick = fullscreen;
+addEventListener('keydown', e => {
+  const k = e.key.toLowerCase();
+  if (k === ' ' && !running) { e.preventDefault(); begin(true); }
+  else if (k === 'f') fullscreen();
+  else if (k === 'm') toggleMute();
+  else if (k === 'r') begin(!silentMode);
+  else if (k === 'c') begin(true, otherStyle());
+});
+let uiTimer;
+addEventListener('mousemove', () => { document.body.classList.add('ui'); clearTimeout(uiTimer);
+  uiTimer = setTimeout(() => document.body.classList.remove('ui'), 1800); });
+// Embed mode: start silently and loop. Reduced-motion users just see the end card.
+if (EMBED) {
+  document.body.classList.add('embed');
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { $('start').style.display = 'none'; endCard.style.opacity = 1; }
+  else begin(false);
+}
+// test hook: ?t=SECONDS jumps to a point in the timeline (silent)
+const jt = new URLSearchParams(location.search).get('t');
+if (jt !== null) { $('start').style.display = 'none'; running = true; perfStart = performance.now() - parseFloat(jt) * 1000; }
+</script>
+</body>
+</html>
