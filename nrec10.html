@@ -13,16 +13,16 @@
 
   /* Opening line */
   #intro { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
-    color: var(--blue); font-size: 4.2vh; line-height: 1.5; letter-spacing: .02em; opacity: 0;
+    color: var(--blue); font-size: min(4.2vh, 5vw); line-height: 1.5; letter-spacing: .02em; opacity: 0;
     padding: 0 10vw; text-align: left; font-family: "Helvetica Neue", Arial, sans-serif; }
 
   /* Title */
   #title { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center;
     justify-content: center; opacity: 0; pointer-events: none; }
-  #title .logo { font-size: 30vh; font-weight: 900; letter-spacing: .06em; line-height: .9;
+  #title .logo { font-size: min(30vh, 24vw); font-weight: 900; letter-spacing: .06em; line-height: .9;
     color: transparent; -webkit-text-stroke: .9vh var(--gold);
     text-shadow: 0 0 6vh rgba(245,197,24,.35); font-family: "Arial Black", "Helvetica Neue", Arial, sans-serif; }
-  #title .ten { font-size: 7vh; font-weight: 800; letter-spacing: .5em; margin-top: 2vh; padding-left: .5em; }
+  #title .ten { font-size: min(7vh, 6vw); font-weight: 800; letter-spacing: .5em; margin-top: 2vh; padding-left: .5em; }
 
   /* Crawl */
   /* The crawl text is drawn on the canvas; this block is only the editable source. */
@@ -31,15 +31,15 @@
   /* End card */
   #end { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
     text-align: center; opacity: 0; pointer-events: none; gap: 2.5vh; }
-  #end .big { font-size: 11vh; font-weight: 900; letter-spacing: .04em; text-shadow: 0 0 5vh rgba(245,197,24,.4); }
-  #end .dates { font-size: 3.2vh; letter-spacing: .25em; padding: 0 4vw; line-height: 1.6; color: #fff; opacity: .85; }
-  #end .may { font-size: 4.2vh; color: var(--blue); font-style: italic; margin-top: 2vh; }
-  #end .from { font-size: 2.6vh; color: #aaa; letter-spacing: .2em; margin-top: 3vh; }
+  #end .big { font-size: min(11vh, 14vw); font-weight: 900; letter-spacing: .04em; text-shadow: 0 0 5vh rgba(245,197,24,.4); }
+  #end .dates { font-size: min(3.2vh, 3.6vw); letter-spacing: .25em; padding: 0 4vw; line-height: 1.6; color: #fff; opacity: .85; }
+  #end .may { font-size: min(4.2vh, 5.5vw); color: var(--blue); font-style: italic; margin-top: 2vh; }
+  #end .from { font-size: min(2.6vh, 3vw); color: #aaa; letter-spacing: .2em; margin-top: 3vh; }
 
   /* Start screen & controls */
   #start { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
     gap: 3vh; background: radial-gradient(ellipse at center, rgba(0,0,0,.2), rgba(0,0,0,.85)); z-index: 10; text-align: center; }
-  #start h2 { font-size: 6vh; letter-spacing: .1em; }
+  #start h2 { font-size: min(6vh, 9vw); letter-spacing: .1em; }
   #start p { color: #bbb; font-size: 2.2vh; max-width: 60ch; line-height: 1.6; font-family: "Helvetica Neue", Arial, sans-serif; }
   button { font: inherit; cursor: pointer; border: 2px solid var(--gold); color: var(--gold); background: transparent;
     padding: 1.4vh 3.5vh; font-size: 2.6vh; letter-spacing: .15em; text-transform: uppercase; border-radius: 4px; transition: .2s; }
@@ -49,8 +49,9 @@
   #controls button { font-size: 1.6vh; padding: .8vh 1.6vh; border-width: 1px; }
   body.ui #controls { opacity: .8; }
   body.running { cursor: none; }
+  @media (hover: none) { #start .kbd { display: none; } }
   /* Embed mode (nrec10.html?embed): silent loop + link to the full version */
-  #watch { display: none; position: fixed; right: 2.5vh; top: 2.5vh; z-index: 12; font-size: 3.4vh; padding: 1vh 2vh;
+  #watch { display: none; position: fixed; right: 2.5vh; top: 2.5vh; z-index: 12; font-size: max(3.4vh, 11px); padding: max(1vh, 6px) max(2vh, 10px);
     color: #000; background: var(--gold); border-radius: 4px; text-decoration: none; letter-spacing: .08em;
     font-weight: 700; text-transform: uppercase; box-shadow: 0 0 3vh rgba(0,0,0,.6); opacity: .85; }
   #watch:hover, #watch:focus-visible { opacity: 1; outline: 2px solid #fff; }
@@ -99,7 +100,7 @@
 
 <div id="start">
   <h2>NREC · 10 YEARS</h2>
-  <p>Press <b>Start</b> (or Space). F = fullscreen · M = mute · R = replay · C = switch music.<br>The music is original and written in code, so it's free to use anywhere.</p>
+  <p><span class="kbd">Press <b>Start</b> (or Space). F = fullscreen · M = mute · R = replay · C = switch music.<br></span>The music is original and written in code, so it's free to use anywhere.</p>
   <div class="row">
     <button id="go">▶ Orchestral</button>
     <button id="goSid">▶ C64 SID</button>
@@ -165,9 +166,9 @@ function layoutCrawl() {
   const lines = []; let y = 0;
   for (const el of document.getElementById('crawl').children) {
     let size, align, gap, text = el.textContent.replace(/\s+/g, ' ').trim();
-    if (el.classList.contains('episode')) { size = .05 * H; align = 'center'; gap = .012 * H; }
-    else if (el.tagName === 'H1') { size = .09 * H; align = 'center'; gap = .06 * H; text = text.toUpperCase(); }
-    else { size = .056 * H; align = el.classList.contains('center') ? 'center' : 'justify'; gap = .06 * H; }
+    if (el.classList.contains('episode')) { size = Math.min(.05 * H, .067 * pw); align = 'center'; gap = .24 * size; }
+    else if (el.tagName === 'H1') { size = Math.min(.09 * H, .12 * pw); align = 'center'; gap = .67 * size; text = text.toUpperCase(); }
+    else { size = Math.min(.056 * H, .075 * pw); align = el.classList.contains('center') ? 'center' : 'justify'; gap = 1.07 * size; }
     cx.font = `700 ${size}px ${FONT_FAMILY}`;
     const space = cx.measureText(' ').width, lh = size * 1.35;
     const words = text.split(' ').map(w => ({w, wd: cx.measureText(w).width}));
@@ -570,8 +571,8 @@ addEventListener('keydown', e => {
   else if (k === 'c') begin(true, otherStyle());
 });
 let uiTimer;
-addEventListener('mousemove', () => { document.body.classList.add('ui'); clearTimeout(uiTimer);
-  uiTimer = setTimeout(() => document.body.classList.remove('ui'), 1800); });
+['mousemove', 'touchstart'].forEach(ev => addEventListener(ev, () => { document.body.classList.add('ui'); clearTimeout(uiTimer);
+  uiTimer = setTimeout(() => document.body.classList.remove('ui'), 2500); }, {passive: true}));
 // Embed mode: start silently and loop. Reduced-motion users just see the end card.
 if (EMBED) {
   document.body.classList.add('embed');

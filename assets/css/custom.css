@@ -1,3 +1,11 @@
+/* Phones: a squarer frame gives the crawl more room */
+@media (max-width: 575.98px) {
+    .hero-crawl {
+        --bs-aspect-ratio: 100%;
+        margin-top: 1rem;
+    }
+}
+
 .page-view {
     padding: 0;
     margin-top: 0; /* Start at very top */
